@@ -9,13 +9,12 @@
 void check_elf(unsigned char *e_ident);
 void print_magic_numbers(unsigned char *e_ident);
 void print_class(unsigned char *e_ident);
-void print_data_encoding(unsigned char *e_ident);
+void print_data_representation(unsigned char *e_ident);
 void print_version(unsigned char *e_ident);
-void print_os_abi(unsigned char *e_ident);
-void print_abi_version(unsigned char *e_ident);
-void print_file_type(unsigned int e_type, unsigned char *e_ident);
+void print_osabi(unsigned char *e_ident);
+void print_type(unsigned int e_type, unsigned char *e_ident);
 void print_entry_point(unsigned long int e_entry, unsigned char *e_ident);
-void close_file(int file_descriptor);
+void close_elf_file(int elf);
 
 /**
  * check_elf - Checks if a file is an ELF file.
@@ -55,3 +54,5 @@ void print_magic_numbers(unsigned char *e_ident)
 	for (index = 0; index < EI_NIDENT; index++)
 	{
 		printf("%02x", e_ident[index]);
+
+		if (index == EI_NIDENT - 1)
